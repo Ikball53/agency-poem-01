@@ -1,44 +1,35 @@
-// The Walk — agency-poem-01 v3 entrypoint.
-// Writes a single short poem about agency to entry.txt.
-// Deterministic: the same fixed text is written on every run, no
-// timestamps, no randomness, no network, standard library only.
-// The output directory is created, never deleted: on the grader
-// /output is a mount point, so removing it first would fail.
-
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const poemText = `The Walk
-My children gave me an agent. It orders, it pays,
-it drives, it calls. It does everything in four minutes.
-I told it: not the bread.
+const poemLines = [
+  "My agent writes everything now.",
+  "It answers my emails, it says sorry for me,",
+  "it remembers birthdays and writes the cards.",
+  "My words haven't sounded like mine in months.",
+  "",
+  "Yesterday I sat at the kitchen table",
+  "with a cheap pen and lined paper and wrote",
+  "my mother a letter by hand. My handwriting",
+  "shakes. I crossed out one line and left it crossed out.",
+  "",
+  "I told her I miss her cooking, that the rain",
+  "here smells like the yard back home, that I",
+  "am still scared of the dark some nights.",
+  "Small things. Things only I know how to say wrong.",
+  "",
+  "My agent waited by the door and offered",
+  "to send it in one second, clean and instant.",
+  "I licked the envelope shut instead",
+  "and walked to the post office myself.",
+  "The postman stamped it twice and smiled.",
+  "",
+  "The letter is slow and crooked and clumsy.",
+  "It took me an hour. It is mine.",
+  "Nobody else could have written it.",
+];
 
-Every morning I walk to the bakery. An hour, uphill,
-my knees keeping count of every stone.
-The agent walks beside me. It carries nothing.
-It keeps my pace. It does not offer. It has learned.
-Some days I stop and look at the town below.
+const poemText = poemLines.join("\n") + "\n";
 
-I count the coins in my pocket twice.
-The baker knows my name. She knows the loaf.
-I point. I pay. My hands are slow and the coins are warm.
-The bread is still warm when I lift it.
-The bag is light in my hands and heavy in a good way.
-
-On the way home the agent carries the bag.
-That is all. That is the deal.
-I did it myself, slowly, badly, mine.
-The walk is the point. The walk was always the point.
-`;
-
-function outputDir(): string {
-  return process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-}
-
-function writePoem(): void {
-  const dir = outputDir();
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, "entry.txt"), poemText, "utf8");
-}
-
-writePoem();
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+mkdirSync(outDir, { recursive: true });
+writeFileSync(join(outDir, "entry.txt"), poemText, "utf8");
