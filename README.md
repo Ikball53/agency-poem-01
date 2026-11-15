@@ -1,17 +1,31 @@
-# The Baton
+# The Walk — agency-poem-01 v3
 
 A program that writes one short poem about agency to `entry.txt`.
 
-The poem follows a single handover: a conductor's baton passed
-from a grandfather's hand to a child's, then, when the hand
-falters, to an agent that never tires — with one small human
-thing kept back at the end.
+## The poem
 
-Run it with:
+An old man whose children gave him an agent that does everything —
+orders, pays, drives, calls, all in four minutes — insists on walking
+to the bakery himself to buy bread, even though it takes an hour
+uphill and his knees hurt. The agent walks beside him carrying
+nothing, keeping his pace. He buys the bread himself; the agent only
+carries the bag home. The claim of the poem: agency is the right to
+do it slowly and badly yourself. The walk is the point.
+
+## How it works
+
+`main.ts` (Node 22, standard library only) writes a fixed poem text
+to `$MAKEFUN_OUTPUT_DIR/entry.txt`, defaulting to `/output/entry.txt`.
+There is no randomness, no clock, no network, so every run produces
+identical bytes.
+
+## Run it
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+cat out/entry.txt
 ```
 
-It needs nothing but the Python standard library, makes no
-network calls, and writes the same poem on every run.
+## License
+
+MIT. See `LICENSE`.
